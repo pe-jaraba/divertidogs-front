@@ -4,25 +4,29 @@ import styled from 'styled-components';
 import ImageSection from './ImageSection';
 import LoginSection from './LoginSection';
 import { deviceMaxHeight } from "../../../styles/deviceSizes";
+import { ThemeProvider } from 'styled-components';
+import { divertidogsTheme } from '../../../styles/divertidogs-theme';
 
 
 function Login() {
     return (
-        <GlobalSection>
-            <StyledContainer>
-                <Content />
-            </StyledContainer>
-        </GlobalSection>
+        <ThemeProvider theme={divertidogsTheme}>
+            <GlobalSection>
+                <StyledContainer>
+                    <Content />
+                </StyledContainer>
+            </GlobalSection>
+        </ThemeProvider>
     );
 }
 
 
 const GlobalSection = styled('section')`
-    font-family: 'Lato',Arial, sans-serif;
+    font-family: ${props => props.theme.fontPrimary}, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.8;
     font-weight: normal;
-    background: #F1EBE9;
+    background: ${props => props.theme.colors.light};
     color: #212529;
     height: 100%;
     overflow: auto;

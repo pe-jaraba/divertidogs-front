@@ -4,11 +4,15 @@ import 'styled-components';
 // and extend them!
 declare module 'styled-components' {
   export interface DefaultTheme {
-    primaryFont: string,
+    fontPrimary: string;
+
     colors: {
-        primary: string,
-        secondary: string,
-        black: string
-    }
+      main: string;
+      secondary: string;
+      light: string;
+      warning: string;
+      success: string;
+      error: string;
+    };
   }
 }

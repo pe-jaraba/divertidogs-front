@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Link = styled('a')`
     transition: .3s all ease;
-    color: #A833B9;
+    color: ${props => props.theme.colors.main};
     &:hover, &:focus {
         text-decoration: none !important;
         outline: none !important;

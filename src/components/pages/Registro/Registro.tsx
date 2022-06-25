@@ -1,28 +1,32 @@
 import React from 'react';
-import { Container , Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import ImageSection from './ImageSection';
 import RegisterSection from './RegisterSection';
 import { deviceMaxHeight } from "../../../styles/deviceSizes";
+import { ThemeProvider } from 'styled-components';
+import { divertidogsTheme } from '../../../styles/divertidogs-theme';
 
 
 function Registro() {
     return (
-        <GlobalSection>
-            <StyledContainer>
-                <Content />
-            </StyledContainer>
-        </GlobalSection>
+        <ThemeProvider theme={divertidogsTheme}>
+            <GlobalSection>
+                <StyledContainer>
+                    <Content />
+                </StyledContainer>
+            </GlobalSection>
+        </ThemeProvider>
     );
 }
 
 
 const GlobalSection = styled('section')`
-    font-family: 'Lato',Arial, sans-serif;
+    font-family: ${props => props.theme.fontPrimary};
     font-size: 16px;
     line-height: 1.8;
     font-weight: normal;
-    background: #F1EBE9;
+    background: ${props => props.theme.colors.light};
     color: #212529;
     height: 100%;
     overflow: auto;

@@ -24,7 +24,7 @@ const FormControl = styled(Form.Control)`
     &:focus, &:active {
         outline: none !important;
         box-shadow: none;
-        border: 1px solid #A833B9;
+        border: 1px solid ${props => props.theme.colors.main};
     }
     
 `

@@ -12,21 +12,21 @@ const Button = styled(BootButton)`
         outline: none;
     }
     &.btn-primary {
-        background: #A833B9 !important;
-        border: 1px solid #A833B9 !important;
+        background: ${props => props.theme.colors.main} !important;
+        border: 1px solid ${props => props.theme.colors.main} !important;
         color: white !important;
         &:hover {
-            border: 1px solid #A833B9;
+            border: 1px solid ${props => props.theme.colors.main};
             background: transparent;
-            color : #A833B9;
+            color : ${props => props.theme.colors.main};
         }
         &.btn-outline-primary {
-            border: 1px solid #A833B9;
+            border: 1px solid ${props => props.theme.colors.main};
             background: transparent;
-            color : #A833B9;
+            color : ${props => props.theme.colors.main};
             &:hover {
                 border: 1px solid transparent;
-                background: #A833B9;
+                background: ${props => props.theme.colors.main};
                 color : white;
             }
         }
@@ -36,7 +36,7 @@ const Button = styled(BootButton)`
     &:focus, &:active {
         outline: none !important;
         box-shadow: none;
-        border: 1px solid #A833B9;
+        border: 1px solid ${props => props.theme.colors.main};
     }
     
 `
