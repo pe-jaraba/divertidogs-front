@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { deviceMax } from "../../../styles/deviceSizes";
 import Title from './Title';
 import LoginForm from './LoginForm';
-import Link from './Link';
-
+import Link from '../../organisms/login/Link';
 
 const LoginSection = () => {
     return (

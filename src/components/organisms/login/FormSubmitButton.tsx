@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Button as BootButton } from 'react-bootstrap';
+import { FormState } from './Form';
+import { isFormValid } from '../../organisms/login/Form';
 
-
-const Button = styled(BootButton)`
+const StyledFormSubmitButton = styled(BootButton)`
     cursor: pointer;
     height: 48px;
     box-shadow: none!important;
@@ -41,4 +42,17 @@ const Button = styled(BootButton)`
     
 `
 
-export default Button;
+interface FormInputGroupProps {
+    formState: FormState,
+    label: string,
+}
+
+function FormSubmitButton(props: FormInputGroupProps){
+    return <StyledFormSubmitButton type="submit" 
+        variant="primary" 
+        className="form-control btn rounded submit px-3"
+        disabled={!isFormValid(props.formState)}>{props.label}
+    </StyledFormSubmitButton>
+}
+
+export default FormSubmitButton;
