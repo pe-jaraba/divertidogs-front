@@ -38,7 +38,6 @@ const calculatePattern = (props: FormInputGroupProps) => {
     if (props.pattern) return props.pattern
 
     if (props.type === "confirm password") {
-        console.log(props.formState);
         if (!props.passwordInputName) {
             throw new Error("invalid passwordInputName for confirm password input group");
         }

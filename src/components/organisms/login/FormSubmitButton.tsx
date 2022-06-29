@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button as BootButton } from 'react-bootstrap';
+import { Button as BootButton, Spinner } from 'react-bootstrap';
 import { FormState } from './Form';
 import { isFormValid } from '../../organisms/login/Form';
 
@@ -45,13 +45,28 @@ const StyledFormSubmitButton = styled(BootButton)`
 interface FormInputGroupProps {
     formState: FormState,
     label: string,
+    isLoading?: boolean
 }
 
 function FormSubmitButton(props: FormInputGroupProps){
     return <StyledFormSubmitButton type="submit" 
         variant="primary" 
         className="form-control btn rounded submit px-3"
-        disabled={!isFormValid(props.formState)}>{props.label}
+        disabled={!isFormValid(props.formState)}>
+            
+        {
+            props.isLoading && <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+            />
+        }
+        {
+            props.isLoading ? "Cargando.." : props.label
+        }
+       
     </StyledFormSubmitButton>
 }
 

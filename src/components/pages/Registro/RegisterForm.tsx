@@ -1,11 +1,12 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form  } from 'react-bootstrap';
 import { useState } from 'react';
 import { FormInputGroup, InputGroupEntry } from '../../organisms/login/FormInputGroup';
 import { initializeFormState } from '../../organisms/login/Form';
 import FormGroup from '../../organisms/login/FormGroup';
 import FormSubmitButton from '../../organisms/login/FormSubmitButton';
-
+import { crearUsuario } from '../../../api/auth/crearUsuario';
+import ValidationError from '../../../http/ValidationError';
 
 const inputGroupsEntries: Array<InputGroupEntry> = [
     {
@@ -42,9 +43,31 @@ const inputGroupsEntries: Array<InputGroupEntry> = [
     }
 ]
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+    setWasSuccesful: Function,
+    setServerFailedValidations: Function
+}
+
+const RegisterForm = ({ setWasSuccesful, setServerFailedValidations }: RegisterFormProps) => {
     const [validatedForm, setValidatedForm] = useState(false);
     const [formState, setFormState] = useState(initializeFormState(inputGroupsEntries));
+    const [isLoading, setIsLoading] = useState(false);
+
+    const register = async () => {
+        setServerFailedValidations([] as string[]);
+        setIsLoading(true);
+        try {
+            let response = await crearUsuario({email: formState.email.value, clave: formState.clave.value});
+            setWasSuccesful(true);
+        } catch(error){
+            if(error instanceof ValidationError){
+                setServerFailedValidations(error.getFailedValidations());
+            }
+            setWasSuccesful(false);
+        }
+        
+        setIsLoading(false);
+    }
 
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -53,6 +76,8 @@ const RegisterForm = () => {
 
         if (form.checkValidity() === false) {
             event.stopPropagation();
+        } else {
+            register();
         }
 
         setValidatedForm(true);
@@ -89,10 +114,11 @@ const RegisterForm = () => {
                 )
             }
             <FormGroup>
-                <FormSubmitButton formState={formState} label="Guardar" />
+                <FormSubmitButton formState={formState} label="Guardar" isLoading={isLoading}/>
             </FormGroup>
         </Form>
     );
+    
 }
 
 export default RegisterForm;

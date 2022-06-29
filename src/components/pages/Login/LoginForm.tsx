@@ -74,7 +74,7 @@ const LoginForm = () => {
                 )
             }
             <FormGroup>
-                <FormSubmitButton formState={formState} label="Entrar" />
+                <FormSubmitButton formState={formState} label="Entrar"/>
             </FormGroup>
         </Form>
     );
