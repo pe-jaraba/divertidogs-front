@@ -1,20 +1,30 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import ImageSection from './ImageSection';
-import LoginSection from './LoginSection';
 import { deviceMaxHeight } from "../../../styles/deviceSizes";
 import { ThemeProvider } from 'styled-components';
 import { divertidogsTheme } from '../../../styles/divertidogs-theme';
-import { limpiarInformacionAuth } from '../../../services/authServicios';
+import { authEsValida } from '../../../services/authServicios';
+import { useNavigate } from "react-router-dom";
 
 
 
-function Login() {
+function Enrutador() {
+    let navigate = useNavigate();
+
     useEffect(() => {
-        limpiarInformacionAuth();
-    }, [limpiarInformacionAuth])
-
+       const redirectAfterAuth = async () => {
+            const isAuthed = await authEsValida();
+            if(isAuthed){
+                navigate("/inicio", { replace: true });
+            } else {
+                navigate("/login", { replace: true });
+            }
+       } 
+    
+      redirectAfterAuth();
+    }, [authEsValida])
+    
     return (
         <ThemeProvider theme={divertidogsTheme}>
             <GlobalSection>
@@ -55,8 +65,7 @@ const Content = () => {
         <Row className='justify-content-center'>
             <Col md='12' lg='10'>
                 <Wrapper className="d-md-flex">
-                    <ImageSection />
-                    <LoginSection />
+                  
                 </Wrapper>
             </Col>
         </Row>
@@ -74,4 +83,4 @@ const Wrapper = styled('div')`
     box-shadow: 0px 10px 34px -15px rgba(0,0,0,0.24);
 `
 
-export default Login;
+export default Enrutador;

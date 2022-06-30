@@ -34,8 +34,6 @@ function ServerValidationErrorAlert(props: ServerValidationErrorAlertProps) {
 
         </StyledTextDiv>
 
-
-
     );
 }
 

@@ -5,6 +5,11 @@ import { FormInputGroup, InputGroupEntry } from '../../organisms/login/FormInput
 import { initializeFormState } from '../../organisms/login/Form';
 import FormGroup from '../../organisms/login/FormGroup';
 import FormSubmitButton from '../../organisms/login/FormSubmitButton';
+import { iniciarSesion } from '../../../api/auth/iniciarSesion';
+import { useNavigate } from "react-router-dom";
+import ValidationError from '../../../http/ValidationError';
+
+
 
 const inputGroupsEntries: Array<InputGroupEntry> = [
     {
@@ -29,16 +34,38 @@ const inputGroupsEntries: Array<InputGroupEntry> = [
     }
 ]
 
-const LoginForm = () => {
+interface LoginFormProps {
+    setServerFailedValidations: Function
+}
+
+const LoginForm = ({ setServerFailedValidations }: LoginFormProps) => {
     const [validatedForm, setValidatedForm] = useState(false);
     const [formState, setFormState] = useState(initializeFormState(inputGroupsEntries));
+    let navigate = useNavigate();
+
+    const accionIniciarSesion = async () => {
+        const email = formState["email"].value;
+        const clave = formState["clave"].value;
+
+        try {
+            await iniciarSesion({ email, clave } );
+            navigate("/inicio", { replace: true });
+        } catch(error){
+            if(error instanceof ValidationError){
+                setServerFailedValidations(error.getFailedValidations());
+            }
+        }
+    }
 
     const handleSubmit = (event: React.SyntheticEvent) => {
         const form = event.currentTarget as HTMLFormElement;
 
+        event.preventDefault();
+
         if (form.checkValidity() === false) {
-            event.preventDefault();
             event.stopPropagation();
+        } else {
+           accionIniciarSesion();
         }
 
         setValidatedForm(true);
