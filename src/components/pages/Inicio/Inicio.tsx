@@ -1,8 +1,10 @@
 import React from "react";
+import DashboardContent from "./DashboardContent";
+import Layout from '../../Layout';
 
-function Inicio(){
+function Inicio() {
     return (
-        <h1>DIVERTIDOGS HOME</h1>
+        <Layout Content={DashboardContent} />
     );
 }
 

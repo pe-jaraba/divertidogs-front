@@ -13,6 +13,8 @@ declare module 'styled-components' {
       warning: string;
       success: string;
       error: string;
+      textNeutral: string;
+      info: string;
     };
   }
 }

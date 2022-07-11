@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { deviceMaxHeight } from "../../../styles/deviceSizes";
 import { ThemeProvider } from 'styled-components';
 import { divertidogsTheme } from '../../../styles/divertidogs-theme';
-import { authEsValida } from '../../../services/authServicios';
+import { authEsValido } from '../../../services/authServicios';
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ function Enrutador() {
 
     useEffect(() => {
        const redirectAfterAuth = async () => {
-            const isAuthed = await authEsValida();
+            const isAuthed = await authEsValido();
             if(isAuthed){
                 navigate("/inicio", { replace: true });
             } else {
@@ -23,7 +23,7 @@ function Enrutador() {
        } 
     
       redirectAfterAuth();
-    }, [authEsValida])
+    }, [authEsValido])
     
     return (
         <ThemeProvider theme={divertidogsTheme}>

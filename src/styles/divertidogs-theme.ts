@@ -10,7 +10,9 @@ const divertidogsTheme: DefaultTheme = {
       light: '#F1EBE9',
       warning: '#FCCC5E',
       success: '#379634',
-      error: '#DD403A'
+      error: '#DD403A',
+      textNeutral: '#BBBEC5',
+      info: '#03A9F4'
     }
 };
 

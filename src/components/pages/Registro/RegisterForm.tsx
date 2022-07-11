@@ -5,7 +5,7 @@ import { FormInputGroup, InputGroupEntry } from '../../organisms/login/FormInput
 import { initializeFormState } from '../../organisms/login/Form';
 import FormGroup from '../../organisms/login/FormGroup';
 import FormSubmitButton from '../../organisms/login/FormSubmitButton';
-import { crearUsuario } from '../../../api/auth/crearUsuario';
+import { crearUsuario } from '../../../services/authServicios';
 import ValidationError from '../../../http/ValidationError';
 
 const inputGroupsEntries: Array<InputGroupEntry> = [

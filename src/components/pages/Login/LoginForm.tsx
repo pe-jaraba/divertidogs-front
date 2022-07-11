@@ -5,9 +5,10 @@ import { FormInputGroup, InputGroupEntry } from '../../organisms/login/FormInput
 import { initializeFormState } from '../../organisms/login/Form';
 import FormGroup from '../../organisms/login/FormGroup';
 import FormSubmitButton from '../../organisms/login/FormSubmitButton';
-import { iniciarSesion } from '../../../api/auth/iniciarSesion';
+import { iniciarSesion } from '../../../services/authServicios';
 import { useNavigate } from "react-router-dom";
 import ValidationError from '../../../http/ValidationError';
+import AuthError from '../../../http/AuthError';
 
 
 
@@ -53,6 +54,9 @@ const LoginForm = ({ setServerFailedValidations }: LoginFormProps) => {
         } catch(error){
             if(error instanceof ValidationError){
                 setServerFailedValidations(error.getFailedValidations());
+            }
+            if(error instanceof AuthError){
+                setServerFailedValidations(["Credenciales inválidas."]);
             }
         }
     }
