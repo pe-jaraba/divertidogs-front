@@ -1,0 +1,24 @@
+$font-primary: 'Lato',Arial, sans-serif;
+$primary: #A833B9;
+$secondary: #91F0E1;
+$warning: #FCCC5E;
+$light: #F1EBE9;
+$success: #379634;
+$error: #DD403A;
+$link-color: #A833B9;
+$link-hover-color: #A833B9;
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap/scss/variables.scss';
+@import 'bootstrap/scss/mixins.scss';
+
+
+html, body {
+    height: 100%;
+    overflow: auto;
+}
+
+#root {
+    height: 100%;
+    overflow: auto;
+}
